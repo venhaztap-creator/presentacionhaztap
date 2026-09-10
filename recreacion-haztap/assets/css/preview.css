@@ -880,7 +880,9 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255,255,255,0.06);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    
+    text-decoration: none; /* Porque ahora son enlaces */
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     
     /* Layout horizontal de 2 columnas para diseño con fondos */
     width: calc(50% - 12px);
@@ -892,8 +894,9 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 0;
+    transition: background 0.6s ease;
 }
 
 @media (max-width: 900px) {
@@ -901,9 +904,14 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 }
 
 .tn-bento-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    border-color: rgba(255,255,255,0.12);
+    transform: translateY(-8px) scale(1.015);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.25);
+    z-index: 10;
+}
+
+.tn-bento-card:hover::before {
+    background: rgba(0, 0, 0, 0.15); /* Se ilumina levemente al pasar el cursor */
 }
 
 /* Visuals & Animations */
@@ -915,6 +923,11 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     align-items: flex-start;
     padding-top: 30px;
     z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.tn-bento-card:hover .tn-bento-visual {
+    transform: scale(1.03) translateY(-4px);
 }
 
 .tn-bento-content {
@@ -943,6 +956,11 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     color: #fff;
     line-height: 1.2;
     letter-spacing: -0.02em;
+    transition: color 0.3s ease;
+}
+
+.tn-bento-card:hover h3 {
+    color: var(--ht-celeste);
 }
 
 .tn-bento-card p {
