@@ -882,21 +882,22 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     border: 1px solid rgba(255,255,255,0.06);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     
-    /* Todas del mismo tamaño, rectangulares verticales */
-    width: calc(25% - 18px);
-    height: 460px;
+    /* Layout horizontal de 2 columnas para diseño con fondos */
+    width: calc(50% - 12px);
+    height: 480px;
 }
 
-@media (max-width: 1200px) {
-    .tn-bento-card { width: calc(33.333% - 16px); }
+/* Oscurecer el fondo para mejor contraste del UI flotante */
+.tn-bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 0;
 }
 
 @media (max-width: 900px) {
-    .tn-bento-card { width: calc(50% - 12px); }
-}
-
-@media (max-width: 600px) {
-    .tn-bento-card { width: 100%; height: 420px; }
+    .tn-bento-card { width: 100%; height: 440px; }
 }
 
 .tn-bento-card:hover {
@@ -954,20 +955,28 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 /* Mockup Web Scroll */
 .mockup-web-frame {
     width: 85%;
-    height: 280px;
-    background: #222;
-    border-radius: 12px 12px 0 0;
+    height: 320px;
+    background: rgba(34, 34, 34, 0.4);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 16px 16px 0 0;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.2);
     border-bottom: none;
     position: relative;
 }
 .mockup-web-header {
-    height: 24px; background: #333; display: flex; align-items: center; padding: 0 12px; gap: 6px;
+    height: 30px; 
+    background: rgba(0, 0, 0, 0.5); 
+    display: flex; 
+    align-items: center; 
+    padding: 0 16px; 
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .mockup-web-header span {
-    width: 8px; height: 8px; border-radius: 50%;
+    width: 10px; height: 10px; border-radius: 50%;
 }
 .dot-r { background: #ff5f56; }
 .dot-y { background: #ffbd2e; }
