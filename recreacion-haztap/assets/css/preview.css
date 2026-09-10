@@ -798,37 +798,47 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 
 .float-brand {
     position: absolute;
-    border-radius: 20px;
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-    opacity: 0.65;
-    animation: floatYBrands 5s ease-in-out infinite alternate;
-    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.03);
+    opacity: 0.75;
+    animation: floatSmooth 6s ease-in-out infinite alternate;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(4px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
 }
 
 .float-brand:hover {
     opacity: 1;
     z-index: 20;
-    transition: opacity 0.3s;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 30px rgba(255,255,255,0.08);
+    scale: 1.05;
 }
 
 .float-brand img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.fb-1 { top: 8%; left: 3%; width: 140px; height: 180px; animation-delay: 0s; transform: rotate(-8deg); }
-.fb-2 { top: 15%; right: 6%; width: 180px; height: 130px; animation-delay: 1s; transform: rotate(6deg); }
-.fb-3 { bottom: 12%; left: 6%; width: 150px; height: 150px; animation-delay: 2s; transform: rotate(10deg); }
-.fb-4 { bottom: 15%; right: 8%; width: 130px; height: 170px; animation-delay: 0.5s; transform: rotate(-8deg); }
-.fb-5 { top: 40%; left: -3%; width: 140px; height: 120px; animation-delay: 1.5s; transform: rotate(15deg); }
-.fb-6 { top: 50%; right: -2%; width: 150px; height: 180px; animation-delay: 2.5s; transform: rotate(-12deg); }
-.fb-7 { top: 5%; left: 45%; width: 160px; height: 100px; animation-delay: 3s; transform: rotate(2deg); opacity: 0.3;}
+.float-brand:hover img {
+    transform: scale(1.08);
+}
 
-@keyframes floatYBrands {
-    0% { margin-top: 0px; }
-    100% { margin-top: 25px; }
+.fb-1 { top: 8%; left: 3%; width: 150px; height: 190px; animation-delay: 0s; rotate: -6deg; }
+.fb-2 { top: 18%; right: 5%; width: 170px; height: 130px; animation-delay: -1s; rotate: 8deg; }
+.fb-3 { bottom: 10%; left: 8%; width: 160px; height: 160px; animation-delay: -2s; rotate: 12deg; }
+.fb-4 { bottom: 12%; right: 9%; width: 140px; height: 180px; animation-delay: -3s; rotate: -10deg; }
+.fb-5 { top: 45%; left: -2%; width: 130px; height: 140px; animation-delay: -1.5s; rotate: 18deg; opacity: 0.5; }
+.fb-6 { top: 55%; right: -2%; width: 140px; height: 170px; animation-delay: -0.5s; rotate: -15deg; opacity: 0.5; }
+.fb-7 { top: -2%; left: 45%; width: 150px; height: 100px; animation-delay: -2.5s; rotate: 4deg; opacity: 0.4; }
+
+@keyframes floatSmooth {
+    0% { transform: translateY(12px); }
+    100% { transform: translateY(-12px); }
 }
 
 @media (max-width: 900px) {
