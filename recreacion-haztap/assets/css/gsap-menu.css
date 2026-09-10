@@ -36,23 +36,7 @@
 }
 
 #hts-cursor-ring {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(255, 255, 255, 0.75);
-    pointer-events: none;
-    z-index: 999998;
-    transform: translate(-50%, -50%);
-    will-change: transform;
-    mix-blend-mode: difference;
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-        height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-        background 0.3s ease,
-        border-color 0.3s ease,
-        opacity 0.3s ease;
+    display: none !important;
 }
 
 body.cursor-hover #hts-cursor-ring {
