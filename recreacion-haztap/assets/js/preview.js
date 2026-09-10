@@ -292,4 +292,25 @@ document.addEventListener('DOMContentLoaded', () => {
     runRapidShowcase();
     setInterval(runRapidShowcase, 5700);
 
+    // --- 8. BENTO GRID TEXT REVEAL ANIMATION ---
+    const bentoCards = document.querySelectorAll('.bento-reveal-text');
+    if (bentoCards.length > 0 && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        bentoCards.forEach(card => observer.observe(card));
+    } else {
+        bentoCards.forEach(card => card.classList.add('is-visible'));
+    }
+
 });
