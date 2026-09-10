@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(runRapidShowcase, 5700);
 
     // --- 8. BENTO GRID TEXT REVEAL ANIMATION ---
-    const bentoCards = document.querySelectorAll('.bento-reveal-text');
+    const bentoCards = document.querySelectorAll('.tn-bento-reveal-text');
     if (bentoCards.length > 0 && 'IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
