@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 slideShadows: true,
             },
             keyboard: { enabled: true },
-            loop: false,
+            loop: true,
         });
 
         setTimeout(() => { if (videoSwiper) videoSwiper.update(); }, 600);
