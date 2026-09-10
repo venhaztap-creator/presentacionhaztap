@@ -385,6 +385,118 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 }
 
 /* ==========================================================================
+   NUEVOS ESTILOS PARA HOME HERO GRID Y MASONRY
+   ========================================================================== */
+.home-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 900px) {
+    .home-hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+}
+
+.home-hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+@media (min-width: 900px) {
+    .home-hero-left {
+        align-items: flex-start;
+        text-align: left;
+    }
+}
+
+.home-hero .hero-cta-left {
+    justify-content: center;
+}
+
+@media (min-width: 900px) {
+    .home-hero .hero-cta-left {
+        justify-content: flex-start;
+    }
+}
+
+.home-hero-right {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    height: 60vh;
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+@media (min-width: 900px) {
+    .home-hero-right {
+        height: 70vh;
+        margin-right: -40px; /* pull right edge further out if needed */
+    }
+}
+
+.hero-masonry {
+    display: flex;
+    gap: 16px;
+    height: 200%;
+    transform: rotate(6deg) scale(1.1);
+}
+
+.masonry-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 220px;
+}
+
+@media (max-width: 899px) {
+    .masonry-column {
+        width: 160px;
+    }
+    .hidden-mobile {
+        display: none !important;
+    }
+}
+
+.col-left {
+    animation: scroll-up 25s linear infinite;
+}
+.col-right {
+    animation: scroll-down 25s linear infinite;
+    margin-top: -120px;
+}
+
+@keyframes scroll-up {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+@keyframes scroll-down {
+    0% { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+}
+
+.masonry-column img {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ==========================================================================
    HERO 2: SOLUCIÓN HAZTAP COMMERCE (Sin badges, ajustado a 1 viewport desktop)
    ========================================================================== */
 .preview-hero {
