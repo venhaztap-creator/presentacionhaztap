@@ -1041,6 +1041,28 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     margin-top: 10px;
 }
 
+/* --- OPTIMIZACIÓN MÓVIL --- */
+@media (max-width: 900px) {
+    .tn-bento-card {
+        padding: 24px;
+    }
+    /* En móvil no hay "hover" real, así que revelamos permanentemente los subtítulos y la flecha */
+    .tn-bento-card p {
+        opacity: 1;
+        max-height: 150px;
+        transform: translateY(0);
+        margin-top: 10px;
+    }
+    .tn-bento-arrow {
+        opacity: 1;
+        transform: translateX(0);
+        /* Reducimos un poco el tamaño de la flecha en móvil */
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
 /* Mockup Web Scroll */
 .mockup-web-frame {
     width: 85%;
