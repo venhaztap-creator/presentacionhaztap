@@ -919,6 +919,28 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     background: rgba(0, 0, 0, 0.15); /* Se ilumina levemente al pasar el cursor */
 }
 
+/* --- LÓGICA DE ACORDEÓN (EXPANSIÓN HORIZONTAL) --- */
+@media (min-width: 901px) {
+    /* Al hacer hover en la tarjeta izquierda (impar), se expande */
+    .tn-bento-card:nth-child(odd):hover {
+        width: calc(65% - 12px);
+    }
+    /* La vecina de la derecha (par) se contrae para hacerle espacio */
+    .tn-bento-card:nth-child(odd):hover + .tn-bento-card:nth-child(even) {
+        width: calc(35% - 12px);
+    }
+    
+    /* Al hacer hover en la tarjeta derecha (par), se expande */
+    .tn-bento-card:nth-child(even):hover {
+        width: calc(65% - 12px);
+    }
+    /* La vecina de la izquierda (impar) se contrae para hacerle espacio (usando :has) */
+    .tn-bento-card:nth-child(odd):has(+ .tn-bento-card:nth-child(even):hover) {
+        width: calc(35% - 12px);
+    }
+}
+
+
 /* Visuals & Animations */
 .tn-bento-visual {
     position: absolute;
@@ -979,6 +1001,20 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     color: rgba(255,255,255,0.6);
     line-height: 1.5;
     margin: 0;
+    
+    /* Animation hidden state */
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(15px);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+.tn-bento-card:hover p {
+    opacity: 1;
+    max-height: 150px;
+    transform: translateY(0);
+    margin-top: 10px;
 }
 
 /* Mockup Web Scroll */
