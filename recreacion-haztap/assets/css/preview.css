@@ -885,10 +885,6 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     justify-content: flex-end;
     position: relative;
     overflow: hidden;
-    
-    /* FIX: Forzar el recorte del fondo en bordes redondeados al hacer hover/transform */
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
-    transform: translateZ(0);
 
     border: 1px solid rgba(255,255,255,0.06);
     
