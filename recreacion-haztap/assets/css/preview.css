@@ -966,6 +966,35 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     position: relative;
     z-index: 2;
     padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.tn-bento-text {
+    flex: 1;
+}
+
+.tn-bento-arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    color: #000;
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.tn-bento-card:hover .tn-bento-arrow {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .tn-bento-icon {
