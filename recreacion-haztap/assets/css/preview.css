@@ -909,7 +909,7 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 }
 
 .tn-bento-card:hover {
-    transform: translateY(-8px) scale(1.015);
+    /* Eliminamos el translateY y scale para evitar que el elemento escape del cursor (flicker loop) */
     box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(255,255,255,0.06);
     border-color: rgba(255,255,255,0.25);
     z-index: 10;
@@ -923,20 +923,21 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 @media (min-width: 901px) {
     /* Al hacer hover en la tarjeta izquierda (impar), se expande */
     .tn-bento-card:nth-child(odd):hover {
-        width: calc(65% - 12px);
+        /* Buffer de 1px (-13px en vez de -12px) para evitar que flexbox rompa la fila durante la transición */
+        width: calc(65% - 13px);
     }
     /* La vecina de la derecha (par) se contrae para hacerle espacio */
     .tn-bento-card:nth-child(odd):hover + .tn-bento-card:nth-child(even) {
-        width: calc(35% - 12px);
+        width: calc(35% - 13px);
     }
     
     /* Al hacer hover en la tarjeta derecha (par), se expande */
     .tn-bento-card:nth-child(even):hover {
-        width: calc(65% - 12px);
+        width: calc(65% - 13px);
     }
     /* La vecina de la izquierda (impar) se contrae para hacerle espacio (usando :has) */
     .tn-bento-card:nth-child(odd):has(+ .tn-bento-card:nth-child(even):hover) {
-        width: calc(35% - 12px);
+        width: calc(35% - 13px);
     }
 }
 
