@@ -1099,29 +1099,32 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 }
 .img-scroll-y {
     width: 100%;
-    animation: scrollMockupY 12s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    animation: scrollMockupY 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 @keyframes scrollMockupY {
-    0%, 10% { transform: translateY(0); }
-    90%, 100% { transform: translateY(-50%); }
+    0%, 30% { transform: translateY(0); } /* Espera al cursor */
+    45%, 85% { transform: translateY(-40%); } /* Scrollea hacia abajo */
+    100% { transform: translateY(0); } /* Reseteo suave */
 }
 
 .cursor-sim {
     position: absolute;
-    top: 50%;
-    left: 40%;
+    top: 60%;
+    left: 60%;
     font-size: 26px;
     color: #fff;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6));
-    animation: moveCursor 6s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    animation: moveCursor 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     z-index: 10;
 }
 @keyframes moveCursor {
-    0% { transform: translate(0, 0) scale(1); }
-    40% { transform: translate(50px, -30px) scale(1); }
-    45% { transform: translate(50px, -30px) scale(0.85); color: var(--ht-celeste); } /* Simula click */
-    50% { transform: translate(50px, -30px) scale(1); color: #fff; }
-    100% { transform: translate(-40px, 70px) scale(1); }
+    0%, 10% { transform: translate(50px, 50px) scale(1); opacity: 0; }
+    15% { transform: translate(50px, 50px) scale(1); opacity: 1; }
+    25% { transform: translate(-20px, -40px) scale(1); opacity: 1; } /* Mueve al producto */
+    28% { transform: translate(-20px, -40px) scale(0.85); color: var(--ht-celeste); opacity: 1; } /* CLICK */
+    32% { transform: translate(-20px, -40px) scale(1); color: #fff; opacity: 1; } /* SUELTA */
+    45%, 85% { transform: translate(-20px, -180px) scale(1); opacity: 1; } /* Sube junto con la página scrolleada */
+    90%, 100% { transform: translate(-20px, -180px) scale(1); opacity: 0; } /* Desaparece */
 }
 
 /* Mockup Mobile Swipe */
@@ -1133,15 +1136,43 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     overflow: hidden;
     border: 6px solid #222;
     box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    position: relative; /* Para poder posicionar el indicador táctil absoluto */
 }
+
+/* Indicador táctil (el dedo fantasma) */
+.mockup-mobile-frame::after {
+    content: '';
+    position: absolute;
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+    bottom: 40px; left: 50%;
+    margin-left: -20px;
+    opacity: 0;
+    pointer-events: none;
+    animation: touchSwipe 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes touchSwipe {
+    0%, 15% { opacity: 0; transform: translateY(0) scale(1.5); }
+    18% { opacity: 1; transform: translateY(0) scale(1); } /* touch down */
+    28% { opacity: 1; transform: translateY(-100px) scale(1); } /* drag up */
+    32%, 55% { opacity: 0; transform: translateY(-100px) scale(1); } /* release */
+    
+    58% { opacity: 1; transform: translateY(0) scale(1); } /* touch down 2 */
+    68% { opacity: 1; transform: translateY(-100px) scale(1); } /* drag up 2 */
+    72%, 100% { opacity: 0; transform: translateY(-100px) scale(1); } /* release 2 */
+}
+
 .img-swipe-y {
     width: 100%;
-    animation: swipeMockup 9s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+    animation: swipeMockup 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 @keyframes swipeMockup {
-    0%, 15% { transform: translateY(0); }
-    40%, 60% { transform: translateY(-35%); }
-    85%, 100% { transform: translateY(-65%); }
+    0%, 20% { transform: translateY(0); }
+    30%, 60% { transform: translateY(-30%); }
+    70%, 90% { transform: translateY(-60%); }
+    100% { transform: translateY(0); }
 }
 
 /* Checkout UI Sim */
@@ -1178,6 +1209,13 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     font-size: 0.95rem;
     margin-top: 24px;
     box-shadow: 0 8px 20px rgba(162, 89, 255, 0.3);
+    animation: btnCheckoutPulse 4s infinite;
+}
+@keyframes btnCheckoutPulse {
+    0%, 60% { background: var(--ht-lila); transform: scale(1); box-shadow: 0 8px 20px rgba(162, 89, 255, 0.3); }
+    65% { background: var(--ht-naranja); transform: scale(0.95); box-shadow: 0 4px 10px rgba(255, 95, 86, 0.3); } /* click */
+    70%, 90% { background: var(--ht-naranja); transform: scale(1); box-shadow: 0 12px 30px rgba(255, 95, 86, 0.5); } /* procesando */
+    100% { background: var(--ht-lila); transform: scale(1); box-shadow: 0 8px 20px rgba(162, 89, 255, 0.3); }
 }
 .shimmer {
     position: relative;
