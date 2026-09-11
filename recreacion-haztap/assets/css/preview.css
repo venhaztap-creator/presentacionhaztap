@@ -879,6 +879,11 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     justify-content: flex-end;
     position: relative;
     overflow: hidden;
+    
+    /* FIX: Forzar el recorte del fondo en bordes redondeados al hacer hover/transform */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    transform: translateZ(0);
+
     border: 1px solid rgba(255,255,255,0.06);
     
     text-decoration: none; /* Porque ahora son enlaces */
@@ -933,10 +938,10 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 .tn-bento-content {
     position: relative;
     z-index: 2;
-    background: linear-gradient(to top, #151518 50%, transparent);
-    padding-top: 40px;
+    background: linear-gradient(to top, #151518 0%, rgba(21,21,24,0.8) 45%, transparent 100%);
+    padding-top: 80px; /* Aumentado para dar más espacio al gradiente */
     margin: -32px;
-    padding: 40px 32px 32px;
+    padding: 80px 32px 32px;
     border-radius: 0 0 28px 28px;
 }
 
