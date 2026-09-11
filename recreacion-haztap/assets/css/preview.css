@@ -865,9 +865,15 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 
 .tn-bento-grid {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     gap: 24px;
+}
+
+.tn-bento-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+    width: 100%;
 }
 
 .tn-bento-card {
@@ -887,11 +893,11 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     border: 1px solid rgba(255,255,255,0.06);
     
     text-decoration: none; /* Porque ahora son enlaces */
-    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     
-    /* Layout horizontal de 2 columnas para diseño con fondos */
-    width: calc(50% - 12px);
+    /* Usamos flex puro para evitar errores de redondeo matemáticos */
+    flex: 1 1 50%;
     height: 480px;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* Oscurecer el fondo para mejor contraste del UI flotante */
@@ -905,6 +911,9 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
 }
 
 @media (max-width: 900px) {
+    .tn-bento-row {
+        flex-direction: column;
+    }
     .tn-bento-card { width: 100%; height: 440px; }
 }
 
@@ -919,25 +928,11 @@ i.ph, i.ph-bold, i.ph-fill, i.ph-regular {
     background: rgba(0, 0, 0, 0.15); /* Se ilumina levemente al pasar el cursor */
 }
 
-/* --- LÓGICA DE ACORDEÓN (EXPANSIÓN HORIZONTAL) --- */
+/* --- LÓGICA DE ACORDEÓN (EXPANSIÓN HORIZONTAL MEDIANTE FLEX) --- */
 @media (min-width: 901px) {
-    /* Al hacer hover en la tarjeta izquierda (impar), se expande */
-    .tn-bento-card:nth-child(odd):hover {
-        /* Buffer de 1px (-13px en vez de -12px) para evitar que flexbox rompa la fila durante la transición */
-        width: calc(65% - 13px);
-    }
-    /* La vecina de la derecha (par) se contrae para hacerle espacio */
-    .tn-bento-card:nth-child(odd):hover + .tn-bento-card:nth-child(even) {
-        width: calc(35% - 13px);
-    }
-    
-    /* Al hacer hover en la tarjeta derecha (par), se expande */
-    .tn-bento-card:nth-child(even):hover {
-        width: calc(65% - 13px);
-    }
-    /* La vecina de la izquierda (impar) se contrae para hacerle espacio (usando :has) */
-    .tn-bento-card:nth-child(odd):has(+ .tn-bento-card:nth-child(even):hover) {
-        width: calc(35% - 13px);
+    .tn-bento-card:hover {
+        /* La tarjeta se expande orgánicamente asumiendo un ratio mayor (aprox 65/35) */
+        flex: 1.85 1 65%;
     }
 }
 
